@@ -1,0 +1,182 @@
+[
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "numpy",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "numpy",
+        "description": "numpy",
+        "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "Pipeline",
+        "importPath": "sklearn.pipeline",
+        "description": "sklearn.pipeline",
+        "isExtraImport": true,
+        "detail": "sklearn.pipeline",
+        "documentation": {}
+    },
+    {
+        "label": "ColumnTransformer",
+        "importPath": "sklearn.compose",
+        "description": "sklearn.compose",
+        "isExtraImport": true,
+        "detail": "sklearn.compose",
+        "documentation": {}
+    },
+    {
+        "label": "OneHotEncoder",
+        "importPath": "sklearn.preprocessing",
+        "description": "sklearn.preprocessing",
+        "isExtraImport": true,
+        "detail": "sklearn.preprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "StandardScaler",
+        "importPath": "sklearn.preprocessing",
+        "description": "sklearn.preprocessing",
+        "isExtraImport": true,
+        "detail": "sklearn.preprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "LabelEncoder",
+        "importPath": "sklearn.preprocessing",
+        "description": "sklearn.preprocessing",
+        "isExtraImport": true,
+        "detail": "sklearn.preprocessing",
+        "documentation": {}
+    },
+    {
+        "label": "SimpleImputer",
+        "importPath": "sklearn.impute",
+        "description": "sklearn.impute",
+        "isExtraImport": true,
+        "detail": "sklearn.impute",
+        "documentation": {}
+    },
+    {
+        "label": "BaseEstimator",
+        "importPath": "sklearn.base",
+        "description": "sklearn.base",
+        "isExtraImport": true,
+        "detail": "sklearn.base",
+        "documentation": {}
+    },
+    {
+        "label": "TransformerMixin",
+        "importPath": "sklearn.base",
+        "description": "sklearn.base",
+        "isExtraImport": true,
+        "detail": "sklearn.base",
+        "documentation": {}
+    },
+    {
+        "label": "sys",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "sys",
+        "description": "sys",
+        "detail": "sys",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "process_data",
+        "importPath": "src.data_processing",
+        "description": "src.data_processing",
+        "isExtraImport": true,
+        "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "AggregateCustomerFeatures",
+        "kind": 6,
+        "importPath": "src.data_processing",
+        "description": "src.data_processing",
+        "peekOfCode": "class AggregateCustomerFeatures(BaseEstimator, TransformerMixin):\n    \"\"\"\n    Custom transformer to create aggregate features per customer and merge them back to the transaction level.\n    \"\"\"\n    def __init__(self, customer_id_col='CustomerId', amount_col='Amount'):\n        self.customer_id_col = customer_id_col\n        self.amount_col = amount_col\n        self.agg_features_ = None\n    def fit(self, X, y=None):\n        return self",
+        "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "DateTimeFeatureExtractor",
+        "kind": 6,
+        "importPath": "src.data_processing",
+        "description": "src.data_processing",
+        "peekOfCode": "class DateTimeFeatureExtractor(BaseEstimator, TransformerMixin):\n    \"\"\"\n    Custom transformer to extract date/time features from TransactionStartTime.\n    \"\"\"\n    def __init__(self, datetime_col='TransactionStartTime'):\n        self.datetime_col = datetime_col\n    def fit(self, X, y=None):\n        return self\n    def transform(self, X):\n        X = X.copy()",
+        "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "WOEFeatureTransformer",
+        "kind": 6,
+        "importPath": "src.data_processing",
+        "description": "src.data_processing",
+        "peekOfCode": "class WOEFeatureTransformer(BaseEstimator, TransformerMixin):\n    \"\"\"\n    Custom transformer to apply WOE encoding to categorical variables using xverse.\n    \"\"\"\n    def __init__(self, categorical_cols, target_col='FraudResult'):\n        self.categorical_cols = categorical_cols\n        self.target_col = target_col\n        self.woe = None\n        self.woe_cols = None\n    def fit(self, X, y=None):",
+        "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "build_preprocessing_pipeline",
+        "kind": 2,
+        "importPath": "src.data_processing",
+        "description": "src.data_processing",
+        "peekOfCode": "def build_preprocessing_pipeline():\n    # Define columns\n    categorical_cols = ['ProviderId', 'ProductCategory', 'ChannelId', 'ProductId']\n    numerical_cols = ['Amount', 'Value', 'customer_total_amount', 'customer_avg_amount',\n                     'customer_transaction_count', 'customer_std_amount',\n                     'transaction_hour', 'transaction_day', 'transaction_month', 'transaction_year']\n    # Pipelines for different column types\n    categorical_pipeline = Pipeline([\n        ('imputer', SimpleImputer(strategy='most_frequent')),\n        ('onehot', OneHotEncoder(handle_unknown='ignore'))",
+        "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "process_data",
+        "kind": 2,
+        "importPath": "src.data_processing",
+        "description": "src.data_processing",
+        "peekOfCode": "def process_data(input_path):\n    df = pd.read_csv(input_path)\n    pipeline = build_preprocessing_pipeline()\n    processed = pipeline.fit_transform(df)\n    return processed\nif __name__ == \"__main__\":\n    processed = process_data(\"data/raw/data.csv\")\n    print(processed)",
+        "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "input_path",
+        "kind": 5,
+        "importPath": "run_data_processing",
+        "description": "run_data_processing",
+        "peekOfCode": "input_path = 'data/raw/data.csv'\noutput_path = 'data/processed/processed_data.csv'\n# Run the processing pipeline\nprocessed = process_data(input_path)\n# If processed is a numpy array, convert to DataFrame\nif not isinstance(processed, pd.DataFrame):\n    processed = pd.DataFrame(processed)\nprocessed.to_csv(output_path, index=False)\nprint(f'Processed data saved to {output_path}')",
+        "detail": "run_data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "output_path",
+        "kind": 5,
+        "importPath": "run_data_processing",
+        "description": "run_data_processing",
+        "peekOfCode": "output_path = 'data/processed/processed_data.csv'\n# Run the processing pipeline\nprocessed = process_data(input_path)\n# If processed is a numpy array, convert to DataFrame\nif not isinstance(processed, pd.DataFrame):\n    processed = pd.DataFrame(processed)\nprocessed.to_csv(output_path, index=False)\nprint(f'Processed data saved to {output_path}')",
+        "detail": "run_data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "processed",
+        "kind": 5,
+        "importPath": "run_data_processing",
+        "description": "run_data_processing",
+        "peekOfCode": "processed = process_data(input_path)\n# If processed is a numpy array, convert to DataFrame\nif not isinstance(processed, pd.DataFrame):\n    processed = pd.DataFrame(processed)\nprocessed.to_csv(output_path, index=False)\nprint(f'Processed data saved to {output_path}')",
+        "detail": "run_data_processing",
+        "documentation": {}
+    }
+]
