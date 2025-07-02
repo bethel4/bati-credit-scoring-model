@@ -1,0 +1,22 @@
+artifact_path: file:///home/bethel/Documents/10academy/bati-credit-scoring-model/mlruns/288870226930422180/models/m-df9d6cf5b4f442be96e81393ad9f5b0a/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.10.12
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.6.1
+mlflow_version: 3.1.1
+model_id: m-df9d6cf5b4f442be96e81393ad9f5b0a
+model_size_bytes: 2234
+model_uuid: m-df9d6cf5b4f442be96e81393ad9f5b0a
+prompts: null
+run_id: 1a9c64faf0b64d5899c0100d8707d39b
+utc_time_created: '2025-07-02 07:30:43.645471'

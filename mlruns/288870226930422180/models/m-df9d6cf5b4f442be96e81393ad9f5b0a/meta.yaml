@@ -1,0 +1,10 @@
+artifact_location: file:///home/bethel/Documents/10academy/bati-credit-scoring-model/mlruns/288870226930422180/models/m-df9d6cf5b4f442be96e81393ad9f5b0a/artifacts
+creation_timestamp: 1751441443611
+experiment_id: '288870226930422180'
+last_updated_timestamp: 1751441465337
+model_id: m-df9d6cf5b4f442be96e81393ad9f5b0a
+model_type: null
+name: LogisticRegression
+source_run_id: 1a9c64faf0b64d5899c0100d8707d39b
+status: 2
+status_message: null

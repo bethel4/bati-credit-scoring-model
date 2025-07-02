@@ -1,0 +1,10 @@
+artifact_location: file:///home/bethel/Documents/10academy/bati-credit-scoring-model/mlruns/288870226930422180/models/m-9e119381963b44f89e3eaa6c429cb0c2/artifacts
+creation_timestamp: 1751441586957
+experiment_id: '288870226930422180'
+last_updated_timestamp: 1751441594771
+model_id: m-9e119381963b44f89e3eaa6c429cb0c2
+model_type: null
+name: RandomForest
+source_run_id: 20501b9bf4794496acda53479f9d9d80
+status: 2
+status_message: null
