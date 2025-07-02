@@ -1,1 +1,29 @@
 data/
+mlruns/
+*.pkl
+
+# Python cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Environment files
+.env
+.venv/
+env/
+venv/
+*.env
+
+# Docker
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# VSCode/IDE
+.vscode/
+.idea/

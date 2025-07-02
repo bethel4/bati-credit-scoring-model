@@ -1,0 +1,51 @@
+from pydantic import BaseModel
+from typing import List
+
+class PredictRequest(BaseModel):
+    ProviderId_ProviderId_1: float
+    ProviderId_ProviderId_2: float
+    ProviderId_ProviderId_3: float
+    ProviderId_ProviderId_4: float
+    ProviderId_ProviderId_5: float
+    ProviderId_ProviderId_6: float
+    ProductCategory_airtime: float
+    ProductCategory_data_bundles: float
+    ProductCategory_financial_services: float
+    ProductCategory_movies: float
+    ProductCategory_other: float
+    ProductCategory_ticket: float
+    ProductCategory_transport: float
+    ProductCategory_tv: float
+    ProductCategory_utility_bill: float
+    ChannelId_ChannelId_1: float
+    ChannelId_ChannelId_2: float
+    ChannelId_ChannelId_3: float
+    ChannelId_ChannelId_5: float
+    ProductId_ProductId_1: float
+    ProductId_ProductId_10: float
+    ProductId_ProductId_11: float
+    ProductId_ProductId_12: float
+    ProductId_ProductId_13: float
+    ProductId_ProductId_14: float
+    ProductId_ProductId_15: float
+    ProductId_ProductId_16: float
+    ProductId_ProductId_19: float
+    ProductId_ProductId_2: float
+    ProductId_ProductId_20: float
+    ProductId_ProductId_21: float
+    ProductId_ProductId_22: float
+    ProductId_ProductId_23: float
+    ProductId_ProductId_24: float
+    ProductId_ProductId_27: float
+    ProductId_ProductId_3: float
+    ProductId_ProductId_4: float
+    ProductId_ProductId_5: float
+    ProductId_ProductId_6: float
+    ProductId_ProductId_7: float
+    ProductId_ProductId_8: float
+    ProductId_ProductId_9: float
+    Amount: float
+    Value: float
+
+class PredictResponse(BaseModel):
+    risk_probability: float
