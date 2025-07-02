@@ -1,11 +1,35 @@
 [
     {
-        "label": "pandas",
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "PredictRequest",
+        "importPath": "src.api.pydantic_models",
+        "description": "src.api.pydantic_models",
+        "isExtraImport": true,
+        "detail": "src.api.pydantic_models",
+        "documentation": {}
+    },
+    {
+        "label": "PredictResponse",
+        "importPath": "src.api.pydantic_models",
+        "description": "src.api.pydantic_models",
+        "isExtraImport": true,
+        "detail": "src.api.pydantic_models",
+        "documentation": {}
+    },
+    {
+        "label": "mlflow.pyfunc",
         "kind": 6,
         "isExtraImport": true,
-        "importPath": "pandas",
-        "description": "pandas",
-        "detail": "pandas",
+        "importPath": "mlflow.pyfunc",
+        "description": "mlflow.pyfunc",
+        "detail": "mlflow.pyfunc",
         "documentation": {}
     },
     {
@@ -15,6 +39,40 @@
         "importPath": "numpy",
         "description": "numpy",
         "detail": "numpy",
+        "documentation": {}
+    },
+    {
+        "label": "pandas",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "pandas",
+        "description": "pandas",
+        "detail": "pandas",
+        "documentation": {}
+    },
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "List",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
         "documentation": {}
     },
     {
@@ -181,20 +239,74 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
         "label": "process_data",
         "importPath": "src.data_processing",
         "description": "src.data_processing",
         "isExtraImport": true,
         "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "load_model",
+        "kind": 2,
+        "importPath": "src.api.main",
+        "description": "src.api.main",
+        "peekOfCode": "def load_model():\n    global model\n    model = mlflow.sklearn.load_model(MODEL_PATH)\n@app.post(\"/predict\", response_model=PredictResponse)\ndef predict(request: PredictRequest):\n    # Convert request to DataFrame\n    input_data = pd.DataFrame([request.dict()])\n    # Predict risk probability (assume binary classification, get proba for class 1)\n    proba = model.predict_proba(input_data)[0][1]\n    return PredictResponse(risk_probability=float(proba))",
+        "detail": "src.api.main",
+        "documentation": {}
+    },
+    {
+        "label": "predict",
+        "kind": 2,
+        "importPath": "src.api.main",
+        "description": "src.api.main",
+        "peekOfCode": "def predict(request: PredictRequest):\n    # Convert request to DataFrame\n    input_data = pd.DataFrame([request.dict()])\n    # Predict risk probability (assume binary classification, get proba for class 1)\n    proba = model.predict_proba(input_data)[0][1]\n    return PredictResponse(risk_probability=float(proba))",
+        "detail": "src.api.main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "src.api.main",
+        "description": "src.api.main",
+        "peekOfCode": "app = FastAPI()\n# Load the best model from MLflow registry (for now, load from local path)\nMODEL_PATH = \"mlruns/288870226930422180/models/m-9e119381963b44f89e3eaa6c429cb0c2/artifacts/\"\nmodel = None\n@app.on_event(\"startup\")\ndef load_model():\n    global model\n    model = mlflow.sklearn.load_model(MODEL_PATH)\n@app.post(\"/predict\", response_model=PredictResponse)\ndef predict(request: PredictRequest):",
+        "detail": "src.api.main",
+        "documentation": {}
+    },
+    {
+        "label": "MODEL_PATH",
+        "kind": 5,
+        "importPath": "src.api.main",
+        "description": "src.api.main",
+        "peekOfCode": "MODEL_PATH = \"mlruns/288870226930422180/models/m-9e119381963b44f89e3eaa6c429cb0c2/artifacts/\"\nmodel = None\n@app.on_event(\"startup\")\ndef load_model():\n    global model\n    model = mlflow.sklearn.load_model(MODEL_PATH)\n@app.post(\"/predict\", response_model=PredictResponse)\ndef predict(request: PredictRequest):\n    # Convert request to DataFrame\n    input_data = pd.DataFrame([request.dict()])",
+        "detail": "src.api.main",
+        "documentation": {}
+    },
+    {
+        "label": "model",
+        "kind": 5,
+        "importPath": "src.api.main",
+        "description": "src.api.main",
+        "peekOfCode": "model = None\n@app.on_event(\"startup\")\ndef load_model():\n    global model\n    model = mlflow.sklearn.load_model(MODEL_PATH)\n@app.post(\"/predict\", response_model=PredictResponse)\ndef predict(request: PredictRequest):\n    # Convert request to DataFrame\n    input_data = pd.DataFrame([request.dict()])\n    # Predict risk probability (assume binary classification, get proba for class 1)",
+        "detail": "src.api.main",
+        "documentation": {}
+    },
+    {
+        "label": "PredictRequest",
+        "kind": 6,
+        "importPath": "src.api.pydantic_models",
+        "description": "src.api.pydantic_models",
+        "peekOfCode": "class PredictRequest(BaseModel):\n    ProviderId_ProviderId_1: float\n    ProviderId_ProviderId_2: float\n    ProviderId_ProviderId_3: float\n    ProviderId_ProviderId_4: float\n    ProviderId_ProviderId_5: float\n    ProviderId_ProviderId_6: float\n    ProductCategory_airtime: float\n    ProductCategory_data_bundles: float\n    ProductCategory_financial_services: float",
+        "detail": "src.api.pydantic_models",
+        "documentation": {}
+    },
+    {
+        "label": "PredictResponse",
+        "kind": 6,
+        "importPath": "src.api.pydantic_models",
+        "description": "src.api.pydantic_models",
+        "peekOfCode": "class PredictResponse(BaseModel):\n    risk_probability: float",
+        "detail": "src.api.pydantic_models",
         "documentation": {}
     },
     {
