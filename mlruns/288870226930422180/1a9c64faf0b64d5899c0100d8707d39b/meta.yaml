@@ -1,0 +1,14 @@
+artifact_uri: file:///home/bethel/Documents/10academy/bati-credit-scoring-model/mlruns/288870226930422180/1a9c64faf0b64d5899c0100d8707d39b/artifacts
+end_time: 1751441465498
+entry_point_name: ''
+experiment_id: '288870226930422180'
+lifecycle_stage: active
+run_id: 1a9c64faf0b64d5899c0100d8707d39b
+run_name: LogisticRegression
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1751441443564
+status: 3
+tags: []
+user_id: bethel

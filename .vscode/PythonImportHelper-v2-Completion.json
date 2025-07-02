@@ -82,6 +82,96 @@
         "documentation": {}
     },
     {
+        "label": "train_test_split",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "GridSearchCV",
+        "importPath": "sklearn.model_selection",
+        "description": "sklearn.model_selection",
+        "isExtraImport": true,
+        "detail": "sklearn.model_selection",
+        "documentation": {}
+    },
+    {
+        "label": "LogisticRegression",
+        "importPath": "sklearn.linear_model",
+        "description": "sklearn.linear_model",
+        "isExtraImport": true,
+        "detail": "sklearn.linear_model",
+        "documentation": {}
+    },
+    {
+        "label": "RandomForestClassifier",
+        "importPath": "sklearn.ensemble",
+        "description": "sklearn.ensemble",
+        "isExtraImport": true,
+        "detail": "sklearn.ensemble",
+        "documentation": {}
+    },
+    {
+        "label": "accuracy_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "precision_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "recall_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "f1_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "roc_auc_score",
+        "importPath": "sklearn.metrics",
+        "description": "sklearn.metrics",
+        "isExtraImport": true,
+        "detail": "sklearn.metrics",
+        "documentation": {}
+    },
+    {
+        "label": "mlflow",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mlflow",
+        "description": "mlflow",
+        "detail": "mlflow",
+        "documentation": {}
+    },
+    {
+        "label": "mlflow.sklearn",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "mlflow.sklearn",
+        "description": "mlflow.sklearn",
+        "detail": "mlflow.sklearn",
+        "documentation": {}
+    },
+    {
         "label": "sys",
         "kind": 6,
         "isExtraImport": true,
@@ -150,6 +240,78 @@
         "description": "src.data_processing",
         "peekOfCode": "def process_data(input_path):\n    df = pd.read_csv(input_path)\n    pipeline = build_preprocessing_pipeline()\n    processed = pipeline.fit_transform(df)\n    return processed\nif __name__ == \"__main__\":\n    processed = process_data(\"data/raw/data.csv\")\n    print(processed)",
         "detail": "src.data_processing",
+        "documentation": {}
+    },
+    {
+        "label": "processed_df",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "processed_df = pd.read_csv('data/processed/processed_data.csv')\n# Load RFM DataFrame with is_high_risk label\nrfm = pd.read_csv('data/processed/rfm_with_risk.csv')\n# Merge is_high_risk into processed features\nmerged_df = processed_df.merge(rfm[['CustomerId', 'is_high_risk']], on='CustomerId', how='left')\n# Save merged data for modeling\nmerged_df.to_csv('data/processed/model_ready_data.csv', index=False)\n# Prepare features and target\ny = merged_df['is_high_risk']\nX = merged_df.drop(['CustomerId', 'is_high_risk'], axis=1)",
+        "detail": "src.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "rfm",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "rfm = pd.read_csv('data/processed/rfm_with_risk.csv')\n# Merge is_high_risk into processed features\nmerged_df = processed_df.merge(rfm[['CustomerId', 'is_high_risk']], on='CustomerId', how='left')\n# Save merged data for modeling\nmerged_df.to_csv('data/processed/model_ready_data.csv', index=False)\n# Prepare features and target\ny = merged_df['is_high_risk']\nX = merged_df.drop(['CustomerId', 'is_high_risk'], axis=1)\n# Split data\nX_train, X_test, y_train, y_test = train_test_split(",
+        "detail": "src.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "merged_df",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "merged_df = processed_df.merge(rfm[['CustomerId', 'is_high_risk']], on='CustomerId', how='left')\n# Save merged data for modeling\nmerged_df.to_csv('data/processed/model_ready_data.csv', index=False)\n# Prepare features and target\ny = merged_df['is_high_risk']\nX = merged_df.drop(['CustomerId', 'is_high_risk'], axis=1)\n# Split data\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42, stratify=y\n)",
+        "detail": "src.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "y",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "y = merged_df['is_high_risk']\nX = merged_df.drop(['CustomerId', 'is_high_risk'], axis=1)\n# Split data\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42, stratify=y\n)\n# Define models and parameter grids\nmodels = {\n    \"LogisticRegression\": LogisticRegression(max_iter=1000, random_state=42),\n    \"RandomForest\": RandomForestClassifier(random_state=42)",
+        "detail": "src.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "X",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "X = merged_df.drop(['CustomerId', 'is_high_risk'], axis=1)\n# Split data\nX_train, X_test, y_train, y_test = train_test_split(\n    X, y, test_size=0.2, random_state=42, stratify=y\n)\n# Define models and parameter grids\nmodels = {\n    \"LogisticRegression\": LogisticRegression(max_iter=1000, random_state=42),\n    \"RandomForest\": RandomForestClassifier(random_state=42)\n}",
+        "detail": "src.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "models",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "models = {\n    \"LogisticRegression\": LogisticRegression(max_iter=1000, random_state=42),\n    \"RandomForest\": RandomForestClassifier(random_state=42)\n}\nparam_grids = {\n    \"LogisticRegression\": {\"C\": [0.1, 1, 10]},\n    \"RandomForest\": {\"n_estimators\": [100, 200], \"max_depth\": [None, 10, 20]}\n}\nbest_estimators = {}\nmlflow.set_experiment(\"credit_scoring\")",
+        "detail": "src.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "param_grids",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "param_grids = {\n    \"LogisticRegression\": {\"C\": [0.1, 1, 10]},\n    \"RandomForest\": {\"n_estimators\": [100, 200], \"max_depth\": [None, 10, 20]}\n}\nbest_estimators = {}\nmlflow.set_experiment(\"credit_scoring\")\nfor name, model in models.items():\n    print(f\"\\nTraining {name}...\")\n    grid = GridSearchCV(model, param_grids[name], cv=3, scoring='f1', n_jobs=-1)\n    grid.fit(X_train, y_train)",
+        "detail": "src.train_model",
+        "documentation": {}
+    },
+    {
+        "label": "best_estimators",
+        "kind": 5,
+        "importPath": "src.train_model",
+        "description": "src.train_model",
+        "peekOfCode": "best_estimators = {}\nmlflow.set_experiment(\"credit_scoring\")\nfor name, model in models.items():\n    print(f\"\\nTraining {name}...\")\n    grid = GridSearchCV(model, param_grids[name], cv=3, scoring='f1', n_jobs=-1)\n    grid.fit(X_train, y_train)\n    best_estimators[name] = grid.best_estimator_\n    print(f\"{name} best params: {grid.best_params_}\")\n    # Evaluate\n    y_pred = grid.predict(X_test)",
+        "detail": "src.train_model",
         "documentation": {}
     },
     {
